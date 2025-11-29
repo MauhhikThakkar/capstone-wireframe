@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roots - Fresh Chakki Atta | UI/UX Wireframe Prototype</title>
+    <title>Roots - Fresh Chakki Atta | Enhanced UI/UX Wireframe with Journey & Transparency</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
@@ -31,8 +31,32 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes growLine {
+            from { height: 0; }
+            to { height: 100%; }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+        }
+        @keyframes scanLine {
+            0% { top: 10%; }
+            50% { top: 80%; }
+            100% { top: 10%; }
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
         .fade-in {
             animation: fadeIn 0.3s ease-out;
+        }
+        .slide-up {
+            animation: slideUp 0.5s ease-out;
         }
         input::placeholder, textarea::placeholder {
             color: #A0937D;
@@ -93,7 +117,20 @@
                 'edit': <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>,
                 'bell': <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>,
                 'help-circle': <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>,
-                'log-out': <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                'log-out': <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>,
+                'scan': <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><rect x="7" y="7" width="10" height="10" rx="1"/></svg>,
+                'award': <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>,
+                'eye': <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>,
+                'droplet': <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>,
+                'sun': <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>,
+                'thermometer': <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg>,
+                'zap': <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>,
+                'info': <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>,
+                'flask': <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 3h6v6l5 9H4l5-9V3z"/><line x1="9" y1="3" x2="15" y2="3"/></svg>,
+                'wheat': <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 22 16 8"/><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"/><path d="M11.47 17.47 13 19l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L5 19l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/><path d="M15.47 13.47 17 15l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L9 15l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/><path d="M19.47 9.47 21 11l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L13 11l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/></svg>,
+                'factory': <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></svg>,
+                'file-check': <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>,
+                'route': <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
             };
             return icons[name] || null;
         };
@@ -111,6 +148,7 @@
             });
             const [paymentMethod, setPaymentMethod] = useState('');
             const [isLoggedIn, setIsLoggedIn] = useState(false);
+            const [journeyStep, setJourneyStep] = useState(0);
 
             const categories = [
                 { id: 1, name: 'Wheat Atta', icon: '🌾', description: 'Pure stone-ground wheat flour', color: '#D4A574' },
@@ -136,6 +174,74 @@
                 { id: 5, name: 'Diabetic Special Atta', price: 95, unit: 'per kg', category: 4, producer: 'Organic Farms Chakki', freshness: '2 days', protein: '11g', fiber: '5g' },
                 { id: 6, name: 'Jowar Flour', price: 70, unit: 'per kg', category: 3, producer: 'Traditional Mills', freshness: '1 day', protein: '10g', fiber: '4g' }
             ];
+
+            // Journey data for transparency
+            const journeyData = {
+                farm: {
+                    title: 'Farm Origin',
+                    location: 'Srikakulam District, Andhra Pradesh',
+                    farmer: 'Ramesh Kumar & Family',
+                    farmSize: '12 Acres',
+                    practices: ['Organic Farming', 'No Pesticides', 'Natural Irrigation'],
+                    harvestDate: '15 Nov 2025',
+                    wheatVariety: 'Sharbati (MP Lok-1)',
+                    icon: '🌾'
+                },
+                procurement: {
+                    title: 'Quality Check',
+                    date: '17 Nov 2025',
+                    tests: ['Moisture Content: 12%', 'Foreign Matter: 0.1%', 'Damaged Grains: 0.5%'],
+                    grade: 'Premium Grade A',
+                    certifications: ['FSSAI Certified', 'Organic India'],
+                    icon: '✅'
+                },
+                mill: {
+                    title: 'Stone Grinding',
+                    millName: 'Organic Farms Chakki',
+                    millDate: '28 Nov 2025',
+                    method: 'Traditional Stone Chakki',
+                    temperature: 'Below 45°C',
+                    preservatives: 'Zero Added',
+                    icon: '⚙️'
+                },
+                packaging: {
+                    title: 'Fresh Packaging',
+                    packDate: '28 Nov 2025',
+                    material: 'Food-Grade, BPA-Free',
+                    seal: 'Tamper-Evident',
+                    shelfLife: '90 Days from Milling',
+                    batchNo: 'RTS-2025-1128-A47',
+                    icon: '📦'
+                },
+                delivery: {
+                    title: 'At Your Doorstep',
+                    expectedDate: '29 Nov 2025',
+                    freshness: 'Within 48 hours of milling',
+                    handling: 'Temperature Controlled',
+                    icon: '🚚'
+                }
+            };
+
+            // Lab test results data
+            const labTestResults = {
+                batchNo: 'RTS-2025-1128-A47',
+                testDate: '28 Nov 2025',
+                labName: 'FSSAI Certified Lab - Hyderabad',
+                overallStatus: 'PASSED',
+                tests: [
+                    { name: 'Adulterants Test', status: 'PASS', detail: 'No chalk, maida, or foreign substances', icon: '🔬' },
+                    { name: 'Pesticide Residue', status: 'PASS', detail: 'Below detectable limits', icon: '🧪' },
+                    { name: 'Heavy Metals', status: 'PASS', detail: 'Lead, Arsenic - Not detected', icon: '⚗️' },
+                    { name: 'Aflatoxin', status: 'PASS', detail: 'Below 4 ppb (Safe limit: 15 ppb)', icon: '🦠' },
+                    { name: 'Moisture Content', status: 'PASS', detail: '11.8% (Ideal: 10-14%)', icon: '💧' },
+                    { name: 'Protein Content', status: 'PASS', detail: '12.4g/100g (Declared: 12g)', icon: '💪' }
+                ],
+                certifications: [
+                    { name: 'FSSAI', number: 'LIC12425000123', valid: 'Dec 2026' },
+                    { name: 'Organic India', number: 'ORG/AP/2025/4521', valid: 'Mar 2026' },
+                    { name: 'ISO 22000', number: 'ISO-FS-2025-789', valid: 'Jan 2027' }
+                ]
+            };
 
             useEffect(() => {
                 if (currentScreen === 'splash') {
@@ -178,7 +284,8 @@
                 fontSize: '16px',
                 fontWeight: '600',
                 cursor: 'pointer',
-                width: '100%'
+                width: '100%',
+                transition: 'all 0.2s'
             };
 
             const bottomNav = {
@@ -186,131 +293,96 @@
                 bottom: 0,
                 left: 0,
                 right: 0,
-                height: '80px',
                 background: 'white',
+                borderTop: '1px solid #E8E0D5',
                 display: 'flex',
                 justifyContent: 'space-around',
-                alignItems: 'center',
-                borderTop: '1px solid #E8E0D5',
-                paddingBottom: '20px'
+                padding: '12px 0 28px',
+                borderRadius: '0 0 40px 40px'
             };
 
-            const navItem = (iconName, label, screen, isActive) => (
+            const navItem = (icon, label, screen, isActive) => (
                 <button
                     onClick={() => setCurrentScreen(screen)}
                     style={{
+                        background: 'none',
+                        border: 'none',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        background: 'none',
-                        border: 'none',
+                        gap: '4px',
                         cursor: 'pointer',
-                        color: isActive ? '#8B4513' : '#A0937D',
-                        gap: '4px'
+                        opacity: isActive ? 1 : 0.5
                     }}
                 >
-                    <Icon name={iconName} size={22} />
-                    <span style={{ fontSize: '11px', fontWeight: isActive ? '600' : '400' }}>{label}</span>
+                    <Icon name={icon} size={24} color={isActive ? '#8B4513' : '#5D4037'} />
+                    <span style={{ fontSize: '10px', color: isActive ? '#8B4513' : '#5D4037', fontWeight: isActive ? '600' : '400' }}>{label}</span>
                 </button>
             );
 
             // SPLASH SCREEN
             const SplashScreen = () => (
-                <div style={{
-                    ...phoneFrame,
-                    background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #D2691E 100%)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}>
-                    <div style={{
-                        width: '120px',
-                        height: '120px',
-                        background: 'white',
-                        borderRadius: '30px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginBottom: '24px',
-                        boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
-                        animation: 'pulse 2s infinite'
-                    }}>
-                        <span style={{ fontSize: '60px' }}>🌾</span>
+                <div style={{ ...phoneFrame, background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #5D4037 100%)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} className="fade-in">
+                    <div style={{ animation: 'pulse 2s infinite' }}>
+                        <span style={{ fontSize: '80px' }}>🌾</span>
                     </div>
-                    <h1 style={{ color: 'white', fontSize: '42px', fontWeight: '800', margin: 0, letterSpacing: '-1px' }}>ROOTS</h1>
-                    <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: '14px', marginTop: '8px', fontWeight: '500' }}>
-                        Chakki Atta • Pulses • Millets & More
-                    </p>
-                    <div style={{ marginTop: '60px', width: '40px', height: '4px', background: 'rgba(255,255,255,0.5)', borderRadius: '2px', overflow: 'hidden' }}>
-                        <div style={{ width: '100%', height: '100%', background: 'white', animation: 'loading 2s ease-in-out' }} />
+                    <h1 style={{ color: 'white', fontSize: '36px', fontWeight: '800', marginTop: '24px', letterSpacing: '-1px' }}>ROOTS</h1>
+                    <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '14px', marginTop: '8px' }}>Fresh Chakki Atta, Delivered</p>
+                    <div style={{ position: 'absolute', bottom: '80px', width: '120px', height: '4px', background: 'rgba(255,255,255,0.2)', borderRadius: '2px', overflow: 'hidden' }}>
+                        <div style={{ width: '40%', height: '100%', background: 'white', borderRadius: '2px', animation: 'loading 1.5s infinite' }} />
                     </div>
                 </div>
             );
 
-            // ONBOARDING SCREEN
+            // ONBOARDING SCREENS
             const OnboardingScreen = ({ step }) => {
-                const slides = [
-                    { icon: '🌾', title: 'Farm Fresh Chakki Atta', description: 'Stone-ground flour from verified organic farms, delivered fresh to your doorstep' },
-                    { icon: '✨', title: 'Personalized Blends', description: 'Customize your atta mix based on your dietary needs - diabetic care, multigrain, millet-based' },
-                    { icon: '🔍', title: 'Complete Transparency', description: 'Track your atta from farm to flour. Know exactly what goes into your daily roti' }
+                const content = [
+                    { emoji: '🌾', title: 'Farm-Fresh Atta', subtitle: 'Stone-ground flour from local chakki mills, milled fresh for every order' },
+                    { emoji: '✨', title: 'Customize Your Blend', subtitle: 'Choose grain mix, grind type, and packaging that suits your family' },
+                    { emoji: '🚚', title: 'Lightning Fast Delivery', subtitle: 'From chakki to kitchen within 2-4 hours in Hyderabad' }
                 ];
-                const current = slides[step - 1];
-
+                const { emoji, title, subtitle } = content[step - 1];
                 return (
-                    <div style={{ ...phoneFrame, display: 'flex', flexDirection: 'column' }} className="fade-in">
-                        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '60px 32px' }}>
-                            <div style={{
-                                width: '200px', height: '200px',
-                                background: 'linear-gradient(135deg, #FFF8F0 0%, #FFE4C4 100%)',
-                                borderRadius: '100px',
-                                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                marginTop: '40px', marginBottom: '48px'
-                            }}>
-                                <span style={{ fontSize: '100px' }}>{current.icon}</span>
+                    <div style={{ ...phoneFrame, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '60px 32px 40px' }} className="fade-in">
+                        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                            <div style={{ width: '180px', height: '180px', background: 'linear-gradient(135deg, #FFF8F0 0%, #FFE4C4 100%)', borderRadius: '90px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '48px' }}>
+                                <span style={{ fontSize: '80px' }}>{emoji}</span>
                             </div>
-                            <h2 style={{ color: '#5D4037', fontSize: '28px', fontWeight: '700', textAlign: 'center', margin: 0, lineHeight: '1.3' }}>{current.title}</h2>
-                            <p style={{ color: '#8D7B68', fontSize: '16px', textAlign: 'center', marginTop: '16px', lineHeight: '1.6' }}>{current.description}</p>
-                            <div style={{ display: 'flex', gap: '8px', marginTop: '48px' }}>
-                                {[1, 2, 3].map(i => (
-                                    <div key={i} style={{
-                                        width: i === step ? '24px' : '8px', height: '8px', borderRadius: '4px',
-                                        background: i === step ? '#8B4513' : '#D4C4B0', transition: 'all 0.3s'
-                                    }} />
-                                ))}
-                            </div>
+                            <h2 style={{ color: '#5D4037', fontSize: '28px', fontWeight: '700', textAlign: 'center', marginBottom: '16px' }}>{title}</h2>
+                            <p style={{ color: '#8D7B68', fontSize: '16px', textAlign: 'center', lineHeight: '1.6' }}>{subtitle}</p>
                         </div>
-                        <div style={{ padding: '24px 32px 48px' }}>
-                            {step < 3 ? (
-                                <div style={{ display: 'flex', gap: '12px' }}>
-                                    <button onClick={() => setCurrentScreen('login')} style={{ ...secondaryButton, flex: 1 }}>Skip</button>
-                                    <button onClick={() => setCurrentScreen(`onboarding${step + 1}`)} style={{ ...primaryButton, flex: 1 }}>Next</button>
-                                </div>
-                            ) : (
-                                <button onClick={() => setCurrentScreen('login')} style={primaryButton}>Get Started</button>
-                            )}
+                        <div style={{ display: 'flex', gap: '8px', marginBottom: '32px' }}>
+                            {[1, 2, 3].map(i => (
+                                <div key={i} style={{ width: i === step ? '24px' : '8px', height: '8px', borderRadius: '4px', background: i === step ? '#8B4513' : '#E8E0D5', transition: 'all 0.3s' }} />
+                            ))}
                         </div>
+                        <button onClick={() => setCurrentScreen(step < 3 ? `onboarding${step + 1}` : 'login')} style={primaryButton}>
+                            {step < 3 ? 'Next' : 'Get Started'}
+                        </button>
+                        {step < 3 && (
+                            <button onClick={() => setCurrentScreen('login')} style={{ ...secondaryButton, marginTop: '12px', border: 'none', color: '#A0937D' }}>Skip</button>
+                        )}
                     </div>
                 );
             };
 
             // LOGIN SCREEN
             const LoginScreen = () => (
-                <div style={{ ...phoneFrame, display: 'flex', flexDirection: 'column' }} className="fade-in">
-                    <div style={{ background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 100%)', height: '44px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px', color: 'white', fontSize: '14px', fontWeight: '600' }}>
-                        <span>9:41</span><span>📶 🔋</span>
-                    </div>
-                    <div style={{ flex: 1, padding: '32px', display: 'flex', flexDirection: 'column' }}>
+                <div style={{ ...phoneFrame, display: 'flex', flexDirection: 'column', padding: '60px 24px 40px' }} className="fade-in">
+                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                         <div style={{ textAlign: 'center', marginBottom: '40px' }}>
                             <span style={{ fontSize: '48px' }}>🌾</span>
-                            <h1 style={{ color: '#5D4037', fontSize: '32px', margin: '16px 0 8px', fontWeight: '700' }}>Welcome to Roots</h1>
-                            <p style={{ color: '#8D7B68', fontSize: '14px' }}>Pure • Personalized • Fresh</p>
+                            <h2 style={{ color: '#5D4037', fontSize: '24px', fontWeight: '700', marginTop: '16px' }}>Welcome to Roots</h2>
+                            <p style={{ color: '#8D7B68', fontSize: '14px', marginTop: '8px' }}>Enter your phone number to continue</p>
                         </div>
                         <div style={{ marginBottom: '24px' }}>
                             <label style={{ color: '#5D4037', fontSize: '14px', fontWeight: '600', display: 'block', marginBottom: '8px' }}>Phone Number</label>
-                            <div style={{ display: 'flex', border: '2px solid #E8E0D5', borderRadius: '12px', overflow: 'hidden' }}>
-                                <span style={{ background: '#F5F0EB', padding: '16px', color: '#5D4037', fontWeight: '600', borderRight: '2px solid #E8E0D5' }}>+91</span>
-                                <input type="tel" placeholder="Enter mobile number" style={{ flex: 1, border: 'none', padding: '16px', fontSize: '16px', outline: 'none', background: 'white' }} />
+                            <div style={{ display: 'flex', gap: '12px' }}>
+                                <div style={{ background: '#F5F0EB', border: '2px solid #E8E0D5', borderRadius: '12px', padding: '14px 16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                    <span style={{ fontSize: '16px' }}>🇮🇳</span>
+                                    <span style={{ color: '#5D4037', fontWeight: '600' }}>+91</span>
+                                </div>
+                                <input type="tel" placeholder="98765 43210" style={{ flex: 1, border: '2px solid #E8E0D5', borderRadius: '12px', padding: '14px 16px', fontSize: '16px', outline: 'none', color: '#5D4037', background: 'white' }} />
                             </div>
                         </div>
                         <button onClick={() => { setIsLoggedIn(true); setCurrentScreen('location'); }} style={primaryButton}>Continue with OTP</button>
@@ -354,7 +426,7 @@
                 </div>
             );
 
-            // DASHBOARD SCREEN
+            // DASHBOARD SCREEN - Enhanced with Transparency CTA
             const DashboardScreen = () => (
                 <div style={{ ...phoneFrame, display: 'flex', flexDirection: 'column' }} className="fade-in">
                     <div style={{ background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 100%)', padding: '44px 20px 24px', color: 'white' }}>
@@ -381,7 +453,20 @@
                         </div>
                     </div>
                     <div style={{ flex: 1, overflow: 'auto', paddingBottom: '100px' }}>
-                        <div style={{ margin: '16px', background: 'linear-gradient(135deg, #FFF8F0 0%, #FFE4C4 100%)', borderRadius: '16px', padding: '20px', display: 'flex', alignItems: 'center', gap: '16px' }}>
+                        {/* NEW: Transparency Hook Banner */}
+                        <div onClick={() => setCurrentScreen('journeyIntro')} style={{ margin: '16px', background: 'linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%)', borderRadius: '16px', padding: '20px', display: 'flex', alignItems: 'center', gap: '16px', cursor: 'pointer', border: '2px solid #4CAF50' }}>
+                            <div style={{ width: '60px', height: '60px', background: 'white', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(76, 175, 80, 0.2)' }}>
+                                <Icon name="route" size={28} color="#4CAF50" />
+                            </div>
+                            <div style={{ flex: 1 }}>
+                                <div style={{ fontSize: '11px', color: '#2E7D32', fontWeight: '700', marginBottom: '4px', letterSpacing: '0.5px' }}>🔍 100% TRANSPARENT</div>
+                                <h3 style={{ color: '#1B5E20', fontSize: '15px', fontWeight: '700', margin: '0 0 4px' }}>Know Your Atta's Journey</h3>
+                                <p style={{ color: '#388E3C', fontSize: '12px', margin: 0 }}>Farm → Mill → Your Kitchen</p>
+                            </div>
+                            <Icon name="chevron-right" size={20} color="#4CAF50" />
+                        </div>
+
+                        <div style={{ margin: '0 16px 16px', background: 'linear-gradient(135deg, #FFF8F0 0%, #FFE4C4 100%)', borderRadius: '16px', padding: '20px', display: 'flex', alignItems: 'center', gap: '16px' }}>
                             <div style={{ flex: 1 }}>
                                 <div style={{ fontSize: '11px', color: '#8B4513', fontWeight: '600', marginBottom: '4px' }}>🌟 NEW USER OFFER</div>
                                 <h3 style={{ color: '#5D4037', fontSize: '18px', fontWeight: '700', margin: '0 0 8px' }}>Get 20% OFF on your first order</h3>
@@ -445,6 +530,355 @@
                 </div>
             );
 
+            // =====================================================
+            // NEW SCREEN 1: JOURNEY INTRO - The Hook Screen
+            // =====================================================
+            const JourneyIntroScreen = () => (
+                <div style={{ ...phoneFrame, display: 'flex', flexDirection: 'column' }} className="fade-in">
+                    <div style={{ background: 'linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%)', padding: '44px 20px 32px', color: 'white' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                            <button onClick={() => setCurrentScreen('dashboard')} style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: '50%', width: '40px', height: '40px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon name="chevron-left" size={24} color="white" /></button>
+                            <h2 style={{ fontSize: '20px', fontWeight: '700', margin: 0 }}>Our Promise</h2>
+                        </div>
+                    </div>
+                    <div style={{ flex: 1, overflow: 'auto', paddingBottom: '24px' }}>
+                        {/* Hero Section */}
+                        <div style={{ background: 'linear-gradient(180deg, #1B5E20 0%, transparent 100%)', padding: '32px 20px' }}>
+                            <div style={{ textAlign: 'center' }}>
+                                <div style={{ fontSize: '64px', marginBottom: '16px' }}>🔍</div>
+                                <h1 style={{ color: 'white', fontSize: '26px', fontWeight: '800', margin: '0 0 12px', lineHeight: '1.2' }}>Complete Transparency</h1>
+                                <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: '14px', lineHeight: '1.6', margin: 0 }}>We believe you deserve to know exactly what goes into your family's food</p>
+                            </div>
+                        </div>
+
+                        {/* Problem Statement */}
+                        <div style={{ padding: '24px 20px' }}>
+                            <div style={{ background: '#FFF3E0', borderRadius: '16px', padding: '20px', border: '2px solid #FFB74D', marginBottom: '20px' }}>
+                                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                                    <span style={{ fontSize: '24px' }}>⚠️</span>
+                                    <div>
+                                        <h3 style={{ color: '#E65100', fontSize: '15px', fontWeight: '700', margin: '0 0 8px' }}>The Problem with Market Atta</h3>
+                                        <p style={{ color: '#F57C00', fontSize: '13px', margin: 0, lineHeight: '1.5' }}>Nearly 25% of food samples in India are found adulterated. Common adulterants in atta include chalk powder, maida, and harmful chemicals.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Our Solution */}
+                            <h3 style={{ color: '#5D4037', fontSize: '18px', fontWeight: '700', margin: '0 0 16px' }}>How Roots is Different</h3>
+                            
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                {[
+                                    { icon: '🌾', title: 'Traceable Sourcing', desc: 'Know exactly which farm your wheat comes from', color: '#4CAF50' },
+                                    { icon: '🔬', title: 'Lab-Tested Purity', desc: 'Every batch tested for adulterants & toxins', color: '#2196F3' },
+                                    { icon: '⚡', title: 'Fresh Milling', desc: 'Ground within 48 hours of your order', color: '#FF9800' },
+                                    { icon: '📱', title: 'QR Transparency', desc: 'Scan to see complete journey & test results', color: '#9C27B0' }
+                                ].map((item, i) => (
+                                    <div key={i} style={{ background: 'white', borderRadius: '12px', padding: '16px', display: 'flex', gap: '16px', alignItems: 'center', border: '1px solid #E8E0D5' }}>
+                                        <div style={{ width: '48px', height: '48px', background: `${item.color}15`, borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>{item.icon}</div>
+                                        <div style={{ flex: 1 }}>
+                                            <h4 style={{ color: '#5D4037', fontSize: '14px', fontWeight: '600', margin: '0 0 4px' }}>{item.title}</h4>
+                                            <p style={{ color: '#8D7B68', fontSize: '12px', margin: 0 }}>{item.desc}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* CTA Buttons */}
+                        <div style={{ padding: '0 20px 20px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                            <button onClick={() => setCurrentScreen('productJourney')} style={{ ...primaryButton, background: 'linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%)' }}>
+                                <span style={{ marginRight: '8px' }}>🗺️</span> See a Product's Journey
+                            </button>
+                            <button onClick={() => setCurrentScreen('purityProof')} style={{ ...secondaryButton, color: '#1B5E20', borderColor: '#1B5E20' }}>
+                                <span style={{ marginRight: '8px' }}>🔬</span> View Lab Test Results
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            );
+
+            // =====================================================
+            // NEW SCREEN 2: PRODUCT JOURNEY - Farm to Kitchen
+            // =====================================================
+            const ProductJourneyScreen = () => {
+                const steps = [
+                    { key: 'farm', data: journeyData.farm, color: '#4CAF50', bg: '#E8F5E9' },
+                    { key: 'procurement', data: journeyData.procurement, color: '#2196F3', bg: '#E3F2FD' },
+                    { key: 'mill', data: journeyData.mill, color: '#FF9800', bg: '#FFF3E0' },
+                    { key: 'packaging', data: journeyData.packaging, color: '#9C27B0', bg: '#F3E5F5' },
+                    { key: 'delivery', data: journeyData.delivery, color: '#E91E63', bg: '#FCE4EC' }
+                ];
+
+                return (
+                    <div style={{ ...phoneFrame, display: 'flex', flexDirection: 'column' }} className="fade-in">
+                        <div style={{ background: 'linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%)', padding: '44px 20px 24px', color: 'white' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
+                                <button onClick={() => setCurrentScreen('journeyIntro')} style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: '50%', width: '40px', height: '40px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon name="chevron-left" size={24} color="white" /></button>
+                                <div>
+                                    <h2 style={{ fontSize: '18px', fontWeight: '700', margin: 0 }}>Product Journey</h2>
+                                    <p style={{ fontSize: '12px', opacity: 0.9, margin: '4px 0 0' }}>Premium Wheat Atta • Batch: RTS-2025-1128-A47</p>
+                                </div>
+                            </div>
+                            {/* QR Code Simulation */}
+                            <div style={{ background: 'white', borderRadius: '12px', padding: '12px', display: 'flex', alignItems: 'center', gap: '16px' }}>
+                                <div style={{ width: '60px', height: '60px', background: '#F5F5F5', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
+                                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '2px', width: '44px', height: '44px' }}>
+                                        {[1,1,1,0,1,1,0,1,0,1,1,1,1,1,1,0,0,1,0,0,1,0,1,1,1].map((v, i) => (
+                                            <div key={i} style={{ background: v ? '#1B5E20' : 'transparent', borderRadius: '1px' }} />
+                                        ))}
+                                    </div>
+                                </div>
+                                <div style={{ flex: 1 }}>
+                                    <p style={{ color: '#5D4037', fontSize: '13px', fontWeight: '600', margin: '0 0 4px' }}>Scan QR on package</p>
+                                    <p style={{ color: '#8D7B68', fontSize: '11px', margin: 0 }}>Get real-time journey updates</p>
+                                </div>
+                                <Icon name="scan" size={24} color="#1B5E20" />
+                            </div>
+                        </div>
+
+                        <div style={{ flex: 1, overflow: 'auto', padding: '24px 20px', paddingBottom: '40px' }}>
+                            <h3 style={{ color: '#5D4037', fontSize: '16px', fontWeight: '700', margin: '0 0 20px' }}>🗺️ From Farm to Your Kitchen</h3>
+                            
+                            {/* Timeline */}
+                            <div style={{ position: 'relative', paddingLeft: '32px' }}>
+                                {/* Vertical Line */}
+                                <div style={{ position: 'absolute', left: '11px', top: '24px', bottom: '24px', width: '2px', background: 'linear-gradient(to bottom, #4CAF50, #2196F3, #FF9800, #9C27B0, #E91E63)' }} />
+                                
+                                {steps.map((step, index) => (
+                                    <div key={step.key} style={{ position: 'relative', marginBottom: index < steps.length - 1 ? '24px' : 0 }} className="slide-up">
+                                        {/* Dot */}
+                                        <div style={{ position: 'absolute', left: '-26px', top: '4px', width: '24px', height: '24px', background: step.color, borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', boxShadow: `0 0 0 4px ${step.bg}`, animation: index === 0 ? 'pulseGlow 2s infinite' : 'none' }}>
+                                            {step.data.icon}
+                                        </div>
+                                        
+                                        {/* Card */}
+                                        <div style={{ background: step.bg, borderRadius: '12px', padding: '16px', border: `1px solid ${step.color}30` }}>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
+                                                <h4 style={{ color: step.color, fontSize: '14px', fontWeight: '700', margin: 0 }}>{step.data.title}</h4>
+                                                {step.data.harvestDate && <span style={{ color: step.color, fontSize: '11px', fontWeight: '600' }}>{step.data.harvestDate}</span>}
+                                                {step.data.date && <span style={{ color: step.color, fontSize: '11px', fontWeight: '600' }}>{step.data.date}</span>}
+                                                {step.data.millDate && <span style={{ color: step.color, fontSize: '11px', fontWeight: '600' }}>{step.data.millDate}</span>}
+                                                {step.data.packDate && <span style={{ color: step.color, fontSize: '11px', fontWeight: '600' }}>{step.data.packDate}</span>}
+                                                {step.data.expectedDate && <span style={{ color: step.color, fontSize: '11px', fontWeight: '600' }}>{step.data.expectedDate}</span>}
+                                            </div>
+                                            
+                                            {/* Farm specific */}
+                                            {step.key === 'farm' && (
+                                                <div style={{ fontSize: '12px', color: '#5D4037' }}>
+                                                    <p style={{ margin: '0 0 4px' }}><strong>Farmer:</strong> {step.data.farmer}</p>
+                                                    <p style={{ margin: '0 0 4px' }}><strong>Location:</strong> {step.data.location}</p>
+                                                    <p style={{ margin: '0 0 8px' }}><strong>Variety:</strong> {step.data.wheatVariety}</p>
+                                                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                                                        {step.data.practices.map((p, i) => (
+                                                            <span key={i} style={{ background: 'white', padding: '4px 8px', borderRadius: '6px', fontSize: '10px', fontWeight: '600', color: step.color }}>✓ {p}</span>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
+                                            
+                                            {/* Quality Check specific */}
+                                            {step.key === 'procurement' && (
+                                                <div style={{ fontSize: '12px', color: '#5D4037' }}>
+                                                    <p style={{ margin: '0 0 8px' }}><strong>Grade:</strong> {step.data.grade}</p>
+                                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginBottom: '8px' }}>
+                                                        {step.data.tests.map((t, i) => (
+                                                            <span key={i} style={{ fontSize: '11px', color: '#5D4037' }}>• {t}</span>
+                                                        ))}
+                                                    </div>
+                                                    <div style={{ display: 'flex', gap: '6px' }}>
+                                                        {step.data.certifications.map((c, i) => (
+                                                            <span key={i} style={{ background: 'white', padding: '4px 8px', borderRadius: '6px', fontSize: '10px', fontWeight: '600', color: step.color }}>🏅 {c}</span>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
+                                            
+                                            {/* Mill specific */}
+                                            {step.key === 'mill' && (
+                                                <div style={{ fontSize: '12px', color: '#5D4037' }}>
+                                                    <p style={{ margin: '0 0 4px' }}><strong>Mill:</strong> {step.data.millName}</p>
+                                                    <p style={{ margin: '0 0 4px' }}><strong>Method:</strong> {step.data.method}</p>
+                                                    <p style={{ margin: '0 0 4px' }}><strong>Temperature:</strong> {step.data.temperature}</p>
+                                                    <p style={{ margin: 0, color: '#4CAF50', fontWeight: '600' }}>✓ {step.data.preservatives} Preservatives</p>
+                                                </div>
+                                            )}
+                                            
+                                            {/* Packaging specific */}
+                                            {step.key === 'packaging' && (
+                                                <div style={{ fontSize: '12px', color: '#5D4037' }}>
+                                                    <p style={{ margin: '0 0 4px' }}><strong>Material:</strong> {step.data.material}</p>
+                                                    <p style={{ margin: '0 0 4px' }}><strong>Seal:</strong> {step.data.seal}</p>
+                                                    <p style={{ margin: '0 0 4px' }}><strong>Shelf Life:</strong> {step.data.shelfLife}</p>
+                                                    <p style={{ margin: 0, background: 'white', padding: '6px 10px', borderRadius: '6px', display: 'inline-block' }}><strong>Batch:</strong> {step.data.batchNo}</p>
+                                                </div>
+                                            )}
+                                            
+                                            {/* Delivery specific */}
+                                            {step.key === 'delivery' && (
+                                                <div style={{ fontSize: '12px', color: '#5D4037' }}>
+                                                    <p style={{ margin: '0 0 4px', color: '#E91E63', fontWeight: '600' }}>🕐 {step.data.freshness}</p>
+                                                    <p style={{ margin: 0 }}><strong>Handling:</strong> {step.data.handling}</p>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                );
+            };
+
+            // =====================================================
+            // NEW SCREEN 3: PURITY PROOF - Lab Test Results
+            // =====================================================
+            const PurityProofScreen = () => (
+                <div style={{ ...phoneFrame, display: 'flex', flexDirection: 'column' }} className="fade-in">
+                    <div style={{ background: 'linear-gradient(135deg, #1565C0 0%, #1976D2 100%)', padding: '44px 20px 24px', color: 'white' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
+                            <button onClick={() => setCurrentScreen('journeyIntro')} style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: '50%', width: '40px', height: '40px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon name="chevron-left" size={24} color="white" /></button>
+                            <div>
+                                <h2 style={{ fontSize: '18px', fontWeight: '700', margin: 0 }}>Purity Certificate</h2>
+                                <p style={{ fontSize: '12px', opacity: 0.9, margin: '4px 0 0' }}>Lab Test Results</p>
+                            </div>
+                        </div>
+                        
+                        {/* Overall Status Badge */}
+                        <div style={{ background: 'rgba(255,255,255,0.15)', borderRadius: '12px', padding: '16px', display: 'flex', alignItems: 'center', gap: '16px' }}>
+                            <div style={{ width: '56px', height: '56px', background: '#4CAF50', borderRadius: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'pulseGlow 2s infinite' }}>
+                                <Icon name="check" size={32} color="white" />
+                            </div>
+                            <div style={{ flex: 1 }}>
+                                <h3 style={{ fontSize: '20px', fontWeight: '800', margin: '0 0 4px' }}>ALL TESTS PASSED</h3>
+                                <p style={{ fontSize: '12px', opacity: 0.9, margin: 0 }}>100% Pure • Zero Adulterants</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style={{ flex: 1, overflow: 'auto', padding: '20px', paddingBottom: '40px' }}>
+                        {/* Batch Info */}
+                        <div style={{ background: '#F5F0EB', borderRadius: '12px', padding: '16px', marginBottom: '20px' }}>
+                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
+                                <div>
+                                    <p style={{ color: '#8D7B68', fontSize: '11px', margin: '0 0 4px' }}>Batch Number</p>
+                                    <p style={{ color: '#5D4037', fontSize: '13px', fontWeight: '600', margin: 0 }}>{labTestResults.batchNo}</p>
+                                </div>
+                                <div>
+                                    <p style={{ color: '#8D7B68', fontSize: '11px', margin: '0 0 4px' }}>Test Date</p>
+                                    <p style={{ color: '#5D4037', fontSize: '13px', fontWeight: '600', margin: 0 }}>{labTestResults.testDate}</p>
+                                </div>
+                                <div style={{ gridColumn: 'span 2' }}>
+                                    <p style={{ color: '#8D7B68', fontSize: '11px', margin: '0 0 4px' }}>Testing Laboratory</p>
+                                    <p style={{ color: '#5D4037', fontSize: '13px', fontWeight: '600', margin: 0 }}>{labTestResults.labName}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Test Results */}
+                        <h3 style={{ color: '#5D4037', fontSize: '16px', fontWeight: '700', margin: '0 0 16px' }}>🔬 Test Results</h3>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '24px' }}>
+                            {labTestResults.tests.map((test, i) => (
+                                <div key={i} style={{ background: 'white', borderRadius: '12px', padding: '14px', border: '1px solid #E8E0D5', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                    <div style={{ width: '40px', height: '40px', background: '#E8F5E9', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px' }}>{test.icon}</div>
+                                    <div style={{ flex: 1 }}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                                            <h4 style={{ color: '#5D4037', fontSize: '13px', fontWeight: '600', margin: 0 }}>{test.name}</h4>
+                                            <span style={{ background: '#E8F5E9', color: '#4CAF50', fontSize: '10px', fontWeight: '700', padding: '4px 10px', borderRadius: '6px' }}>✓ {test.status}</span>
+                                        </div>
+                                        <p style={{ color: '#8D7B68', fontSize: '11px', margin: 0 }}>{test.detail}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Certifications */}
+                        <h3 style={{ color: '#5D4037', fontSize: '16px', fontWeight: '700', margin: '0 0 16px' }}>🏅 Certifications</h3>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '24px' }}>
+                            {labTestResults.certifications.map((cert, i) => (
+                                <div key={i} style={{ background: 'linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%)', borderRadius: '12px', padding: '14px', display: 'flex', alignItems: 'center', gap: '12px', border: '1px solid #FFD54F' }}>
+                                    <div style={{ width: '44px', height: '44px', background: 'white', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                        <Icon name="award" size={24} color="#F57C00" />
+                                    </div>
+                                    <div style={{ flex: 1 }}>
+                                        <h4 style={{ color: '#E65100', fontSize: '14px', fontWeight: '700', margin: '0 0 4px' }}>{cert.name}</h4>
+                                        <p style={{ color: '#F57C00', fontSize: '11px', margin: 0 }}>#{cert.number} • Valid till {cert.valid}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Comparison Section */}
+                        <h3 style={{ color: '#5D4037', fontSize: '16px', fontWeight: '700', margin: '0 0 16px' }}>📊 Roots vs Market Atta</h3>
+                        <div style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #E8E0D5' }}>
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderBottom: '1px solid #E8E0D5' }}>
+                                <div style={{ padding: '12px', fontWeight: '600', fontSize: '12px', color: '#8D7B68' }}>Parameter</div>
+                                <div style={{ padding: '12px', background: '#E8F5E9', fontWeight: '700', fontSize: '12px', color: '#1B5E20', textAlign: 'center' }}>Roots</div>
+                                <div style={{ padding: '12px', background: '#FFF3E0', fontWeight: '600', fontSize: '12px', color: '#E65100', textAlign: 'center' }}>Market Avg</div>
+                            </div>
+                            {[
+                                { param: 'Adulterants', roots: 'None ✓', market: 'Often Present' },
+                                { param: 'Freshness', roots: '< 48 hrs', market: '30-90 days' },
+                                { param: 'Traceability', roots: '100%', market: 'Unknown' },
+                                { param: 'Lab Testing', roots: 'Every Batch', market: 'Rare' },
+                                { param: 'Preservatives', roots: 'Zero', market: 'Added' }
+                            ].map((row, i) => (
+                                <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderBottom: i < 4 ? '1px solid #E8E0D5' : 'none' }}>
+                                    <div style={{ padding: '10px 12px', fontSize: '11px', color: '#5D4037' }}>{row.param}</div>
+                                    <div style={{ padding: '10px 12px', background: '#E8F5E9', fontSize: '11px', color: '#1B5E20', fontWeight: '600', textAlign: 'center' }}>{row.roots}</div>
+                                    <div style={{ padding: '10px 12px', background: '#FFF3E0', fontSize: '11px', color: '#E65100', textAlign: 'center' }}>{row.market}</div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Download Certificate CTA */}
+                        <button style={{ ...primaryButton, marginTop: '24px', background: 'linear-gradient(135deg, #1565C0 0%, #1976D2 100%)' }}>
+                            <span style={{ marginRight: '8px' }}>📄</span> Download Full Certificate
+                        </button>
+                    </div>
+                </div>
+            );
+
+            // =====================================================
+            // NEW SCREEN 4: QR SCANNER SCREEN
+            // =====================================================
+            const QRScannerScreen = () => (
+                <div style={{ ...phoneFrame, display: 'flex', flexDirection: 'column', background: '#000' }} className="fade-in">
+                    <div style={{ padding: '44px 20px 20px', color: 'white' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                            <button onClick={() => setCurrentScreen('productDetail')} style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: '50%', width: '40px', height: '40px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon name="chevron-left" size={24} color="white" /></button>
+                            <h2 style={{ fontSize: '18px', fontWeight: '600', margin: 0 }}>Scan QR Code</h2>
+                        </div>
+                    </div>
+                    
+                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+                        {/* Scanner Frame */}
+                        <div style={{ width: '260px', height: '260px', position: 'relative', marginBottom: '32px' }}>
+                            {/* Corner brackets */}
+                            <div style={{ position: 'absolute', top: 0, left: 0, width: '40px', height: '40px', borderTop: '4px solid #4CAF50', borderLeft: '4px solid #4CAF50', borderTopLeftRadius: '8px' }} />
+                            <div style={{ position: 'absolute', top: 0, right: 0, width: '40px', height: '40px', borderTop: '4px solid #4CAF50', borderRight: '4px solid #4CAF50', borderTopRightRadius: '8px' }} />
+                            <div style={{ position: 'absolute', bottom: 0, left: 0, width: '40px', height: '40px', borderBottom: '4px solid #4CAF50', borderLeft: '4px solid #4CAF50', borderBottomLeftRadius: '8px' }} />
+                            <div style={{ position: 'absolute', bottom: 0, right: 0, width: '40px', height: '40px', borderBottom: '4px solid #4CAF50', borderRight: '4px solid #4CAF50', borderBottomRightRadius: '8px' }} />
+                            
+                            {/* Scanning line */}
+                            <div style={{ position: 'absolute', left: '20px', right: '20px', height: '2px', background: 'linear-gradient(90deg, transparent, #4CAF50, transparent)', animation: 'scanLine 2s infinite ease-in-out' }} />
+                            
+                            {/* Center icon */}
+                            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', opacity: 0.5 }}>
+                                <Icon name="scan" size={48} color="white" />
+                            </div>
+                        </div>
+                        
+                        <p style={{ color: 'white', fontSize: '14px', textAlign: 'center', marginBottom: '8px' }}>Point camera at QR code on package</p>
+                        <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '12px', textAlign: 'center' }}>Get complete product journey & lab results</p>
+                        
+                        {/* Demo button */}
+                        <button onClick={() => setCurrentScreen('productJourney')} style={{ marginTop: '40px', background: 'rgba(76, 175, 80, 0.2)', border: '2px solid #4CAF50', color: '#4CAF50', borderRadius: '12px', padding: '14px 32px', fontSize: '14px', fontWeight: '600', cursor: 'pointer' }}>
+                            Demo: View Sample Journey
+                        </button>
+                    </div>
+                </div>
+            );
+
             // PRODUCERS SCREEN
             const ProducersScreen = () => (
                 <div style={{ ...phoneFrame, display: 'flex', flexDirection: 'column' }} className="fade-in">
@@ -472,17 +906,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid #F5F0EB', display: 'flex', gap: '12px' }}>
-                                    <span style={{ background: '#F5F0EB', color: '#5D4037', fontSize: '11px', padding: '6px 10px', borderRadius: '6px' }}>🌾 Wheat Atta</span>
-                                    <span style={{ background: '#F5F0EB', color: '#5D4037', fontSize: '11px', padding: '6px 10px', borderRadius: '6px' }}>🌿 Multigrain</span>
-                                    <span style={{ background: '#F5F0EB', color: '#5D4037', fontSize: '11px', padding: '6px 10px', borderRadius: '6px' }}>🍃 Millets</span>
+                                <div style={{ display: 'flex', gap: '8px', marginTop: '16px' }}>
+                                    <span style={{ background: '#F5F0EB', color: '#5D4037', fontSize: '11px', padding: '6px 10px', borderRadius: '6px' }}>🌾 Fresh Ground</span>
+                                    <span style={{ background: '#F5F0EB', color: '#5D4037', fontSize: '11px', padding: '6px 10px', borderRadius: '6px' }}>⚡ 2-4 hrs delivery</span>
                                 </div>
                             </div>
                         ))}
                     </div>
                     <div style={bottomNav}>
                         {navItem('home', 'Home', 'dashboard', false)}
-                        {navItem('search', 'Explore', 'producers', true)}
+                        {navItem('search', 'Explore', 'producers', currentScreen === 'producers')}
                         {navItem('shopping-cart', 'Cart', 'cart', false)}
                         {navItem('clock', 'Orders', 'orders', false)}
                         {navItem('user', 'Profile', 'profile', false)}
@@ -494,38 +927,30 @@
             const ProductListScreen = () => (
                 <div style={{ ...phoneFrame, display: 'flex', flexDirection: 'column' }} className="fade-in">
                     <div style={{ background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 100%)', padding: '44px 20px 20px', color: 'white' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                                <button onClick={() => setCurrentScreen('producers')} style={{ background: 'none', border: 'none', cursor: 'pointer' }}><Icon name="chevron-left" size={24} color="white" /></button>
-                                <div>
-                                    <h2 style={{ fontSize: '18px', fontWeight: '600', margin: 0 }}>Organic Farms Chakki</h2>
-                                    <p style={{ fontSize: '12px', opacity: 0.8, margin: '2px 0 0' }}>Fresh ground daily</p>
-                                </div>
-                            </div>
-                            <button onClick={() => setCurrentScreen('cart')} style={{ background: 'none', border: 'none', cursor: 'pointer', position: 'relative' }}>
-                                <Icon name="shopping-cart" size={24} color="white" />
-                                {cart.length > 0 && <span style={{ position: 'absolute', top: '-8px', right: '-8px', background: '#FF6B35', color: 'white', fontSize: '11px', fontWeight: '700', width: '18px', height: '18px', borderRadius: '9px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{cart.length}</span>}
-                            </button>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                            <button onClick={() => setCurrentScreen('producers')} style={{ background: 'none', border: 'none', cursor: 'pointer' }}><Icon name="chevron-left" size={24} color="white" /></button>
+                            <h2 style={{ fontSize: '20px', fontWeight: '600', margin: 0 }}>Fresh Products</h2>
                         </div>
                     </div>
                     <div style={{ flex: 1, overflow: 'auto', padding: '16px', paddingBottom: '100px' }}>
                         {products.map(product => (
-                            <div key={product.id} onClick={() => { setSelectedProduct(product); setCurrentScreen('productDetail'); }}
-                                style={{ background: 'white', borderRadius: '16px', padding: '16px', marginBottom: '12px', display: 'flex', gap: '16px', cursor: 'pointer', border: '1px solid #E8E0D5' }}>
-                                <div style={{ width: '80px', height: '80px', background: 'linear-gradient(135deg, #FFF8F0 0%, #FFE4C4 100%)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '40px' }}>🌾</div>
-                                <div style={{ flex: 1 }}>
-                                    <h4 style={{ color: '#5D4037', fontSize: '15px', fontWeight: '600', margin: '0 0 4px' }}>{product.name}</h4>
-                                    <p style={{ color: '#A0937D', fontSize: '12px', margin: '0 0 8px' }}>{product.producer} • Ground {product.freshness} ago</p>
-                                    <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
-                                        <span style={{ background: '#E8F5E9', color: '#4CAF50', fontSize: '10px', padding: '3px 6px', borderRadius: '4px' }}>Protein: {product.protein}</span>
-                                        <span style={{ background: '#FFF3E0', color: '#FF9800', fontSize: '10px', padding: '3px 6px', borderRadius: '4px' }}>Fiber: {product.fiber}</span>
-                                    </div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                        <span style={{ color: '#8B4513', fontSize: '18px', fontWeight: '700' }}>₹{product.price}<span style={{ fontSize: '12px', fontWeight: '400', color: '#A0937D' }}>/kg</span></span>
-                                        <button onClick={(e) => { e.stopPropagation(); setCart([...cart, { ...product, quantity: 1, customization }]); }}
-                                            style={{ background: '#8B4513', color: 'white', border: 'none', borderRadius: '8px', padding: '8px 16px', fontSize: '13px', fontWeight: '600', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                                            <Icon name="plus" size={14} /> Add
-                                        </button>
+                            <div key={product.id} style={{ background: 'white', borderRadius: '16px', padding: '16px', marginBottom: '12px', border: '1px solid #E8E0D5' }}>
+                                <div style={{ display: 'flex', gap: '16px' }}>
+                                    <div style={{ width: '80px', height: '80px', background: '#FFF8F0', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '40px' }}>🌾</div>
+                                    <div style={{ flex: 1 }}>
+                                        <h4 style={{ color: '#5D4037', fontSize: '15px', fontWeight: '600', margin: '0 0 4px' }}>{product.name}</h4>
+                                        <p style={{ color: '#A0937D', fontSize: '12px', margin: '0 0 8px' }}>{product.producer}</p>
+                                        <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+                                            <span style={{ background: '#E8F5E9', color: '#4CAF50', fontSize: '10px', fontWeight: '600', padding: '3px 8px', borderRadius: '4px' }}>Fresh: {product.freshness}</span>
+                                            <span style={{ background: '#FFF3E0', color: '#FF9800', fontSize: '10px', fontWeight: '600', padding: '3px 8px', borderRadius: '4px' }}>Protein: {product.protein}</span>
+                                        </div>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                            <span style={{ color: '#8B4513', fontSize: '18px', fontWeight: '700' }}>₹{product.price}<span style={{ fontSize: '12px', fontWeight: '400', color: '#A0937D' }}>/kg</span></span>
+                                            <button onClick={() => { setSelectedProduct(product); setCurrentScreen('productDetail'); }}
+                                                style={{ background: '#8B4513', color: 'white', border: 'none', borderRadius: '8px', padding: '8px 16px', fontSize: '13px', fontWeight: '600', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                                <Icon name="plus" size={14} /> Add
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -547,7 +972,7 @@
                 </div>
             );
 
-            // PRODUCT DETAIL SCREEN
+            // PRODUCT DETAIL SCREEN - Enhanced with Journey Link
             const ProductDetailScreen = () => {
                 const product = selectedProduct || products[0];
                 return (
@@ -569,6 +994,28 @@
                                 <p style={{ color: '#A0937D', fontSize: '14px', margin: 0 }}>{product.producer}</p>
                                 <p style={{ color: '#8B4513', fontSize: '28px', fontWeight: '700', margin: '16px 0 0' }}>₹{product.price}<span style={{ fontSize: '14px', fontWeight: '400', color: '#A0937D' }}> /kg</span></p>
                             </div>
+
+                            {/* NEW: Transparency Quick Actions */}
+                            <div style={{ background: 'linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%)', borderRadius: '16px', padding: '16px', marginBottom: '24px', border: '2px solid #4CAF50' }}>
+                                <h3 style={{ color: '#1B5E20', fontSize: '14px', fontWeight: '700', margin: '0 0 12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                    <Icon name="shield" size={18} color="#1B5E20" /> Transparency Guarantee
+                                </h3>
+                                <div style={{ display: 'flex', gap: '8px' }}>
+                                    <button onClick={() => setCurrentScreen('productJourney')} style={{ flex: 1, background: 'white', border: 'none', borderRadius: '10px', padding: '12px', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                                        <Icon name="route" size={20} color="#4CAF50" />
+                                        <span style={{ fontSize: '11px', fontWeight: '600', color: '#1B5E20' }}>View Journey</span>
+                                    </button>
+                                    <button onClick={() => setCurrentScreen('purityProof')} style={{ flex: 1, background: 'white', border: 'none', borderRadius: '10px', padding: '12px', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                                        <Icon name="file-check" size={20} color="#2196F3" />
+                                        <span style={{ fontSize: '11px', fontWeight: '600', color: '#1565C0' }}>Lab Results</span>
+                                    </button>
+                                    <button onClick={() => setCurrentScreen('qrScanner')} style={{ flex: 1, background: 'white', border: 'none', borderRadius: '10px', padding: '12px', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                                        <Icon name="scan" size={20} color="#9C27B0" />
+                                        <span style={{ fontSize: '11px', fontWeight: '600', color: '#7B1FA2' }}>Scan QR</span>
+                                    </button>
+                                </div>
+                            </div>
+
                             <div style={{ background: 'white', borderRadius: '16px', padding: '20px', marginBottom: '24px', border: '1px solid #E8E0D5' }}>
                                 <h3 style={{ color: '#5D4037', fontSize: '16px', fontWeight: '600', margin: '0 0 16px' }}>Nutrition per 100g</h3>
                                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px' }}>
@@ -598,18 +1045,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
-                                <span style={{ color: '#5D4037', fontSize: '15px', fontWeight: '600' }}>Quantity</span>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                                    <button onClick={() => setQuantity(Math.max(1, quantity - 1))} style={{ width: '40px', height: '40px', borderRadius: '50%', border: '2px solid #E8E0D5', background: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon name="minus" size={18} color="#5D4037" /></button>
-                                    <span style={{ color: '#5D4037', fontSize: '18px', fontWeight: '700', minWidth: '30px', textAlign: 'center' }}>{quantity}</span>
-                                    <button onClick={() => setQuantity(quantity + 1)} style={{ width: '40px', height: '40px', borderRadius: '50%', border: 'none', background: '#8B4513', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon name="plus" size={18} color="white" /></button>
-                                </div>
-                            </div>
                         </div>
                         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'white', padding: '16px 24px 32px', borderTop: '1px solid #E8E0D5', display: 'flex', gap: '16px', alignItems: 'center' }}>
-                            <div><p style={{ color: '#A0937D', fontSize: '12px', margin: '0 0 4px' }}>Total Price</p><p style={{ color: '#5D4037', fontSize: '20px', fontWeight: '700', margin: 0 }}>₹{product.price * quantity * (customization.packaging === '5kg' ? 5 : customization.packaging === '10kg' ? 10 : 1)}</p></div>
-                            <button onClick={() => { setCart([...cart, { ...product, quantity, customization }]); setCurrentScreen('cart'); }} style={{ ...primaryButton, flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}><Icon name="shopping-cart" size={18} /> Add to Cart</button>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', background: '#F5F0EB', borderRadius: '12px', padding: '8px' }}>
+                                <button onClick={() => setQuantity(Math.max(1, quantity - 1))} style={{ width: '36px', height: '36px', border: 'none', borderRadius: '8px', background: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon name="minus" size={18} color="#5D4037" /></button>
+                                <span style={{ fontSize: '16px', fontWeight: '600', color: '#5D4037', minWidth: '24px', textAlign: 'center' }}>{quantity}</span>
+                                <button onClick={() => setQuantity(quantity + 1)} style={{ width: '36px', height: '36px', border: 'none', borderRadius: '8px', background: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon name="plus" size={18} color="#5D4037" /></button>
+                            </div>
+                            <button onClick={() => { setCart([...cart, { ...product, quantity }]); setCurrentScreen('cart'); }} style={{ ...primaryButton, flex: 1 }}>
+                                Add to Cart • ₹{product.price * quantity}
+                            </button>
                         </div>
                     </div>
                 );
@@ -620,64 +1065,55 @@
                 <div style={{ ...phoneFrame, display: 'flex', flexDirection: 'column' }} className="fade-in">
                     <div style={{ background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 100%)', padding: '44px 20px 20px', color: 'white' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                            <button onClick={() => setCurrentScreen('dashboard')} style={{ background: 'none', border: 'none', cursor: 'pointer' }}><Icon name="chevron-left" size={24} color="white" /></button>
-                            <h2 style={{ fontSize: '20px', fontWeight: '600', margin: 0 }}>Your Cart</h2>
+                            <button onClick={() => setCurrentScreen('productList')} style={{ background: 'none', border: 'none', cursor: 'pointer' }}><Icon name="chevron-left" size={24} color="white" /></button>
+                            <h2 style={{ fontSize: '20px', fontWeight: '600', margin: 0 }}>My Cart</h2>
                         </div>
                     </div>
-                    <div style={{ flex: 1, overflow: 'auto', padding: '16px', paddingBottom: '180px' }}>
+                    <div style={{ flex: 1, overflow: 'auto', padding: '16px', paddingBottom: '200px' }}>
                         {cart.length === 0 ? (
-                            <div style={{ textAlign: 'center', marginTop: '80px' }}>
-                                <Icon name="shopping-cart" size={64} color="#E8E0D5" />
-                                <h3 style={{ color: '#5D4037', fontSize: '18px', marginTop: '24px' }}>Your cart is empty</h3>
-                                <p style={{ color: '#A0937D', fontSize: '14px' }}>Add some fresh atta to get started</p>
-                                <button onClick={() => setCurrentScreen('dashboard')} style={{ ...primaryButton, marginTop: '24px', width: 'auto', padding: '12px 32px' }}>Browse Products</button>
+                            <div style={{ textAlign: 'center', paddingTop: '80px' }}>
+                                <span style={{ fontSize: '64px' }}>🛒</span>
+                                <h3 style={{ color: '#5D4037', fontSize: '18px', fontWeight: '600', marginTop: '16px' }}>Your cart is empty</h3>
+                                <p style={{ color: '#A0937D', fontSize: '14px' }}>Add fresh atta to get started</p>
+                                <button onClick={() => setCurrentScreen('productList')} style={{ ...primaryButton, marginTop: '24px', width: 'auto', padding: '14px 32px' }}>Browse Products</button>
                             </div>
                         ) : (
                             <>
                                 {cart.map((item, index) => (
                                     <div key={index} style={{ background: 'white', borderRadius: '16px', padding: '16px', marginBottom: '12px', border: '1px solid #E8E0D5' }}>
-                                        <div style={{ display: 'flex', gap: '12px' }}>
-                                            <div style={{ width: '64px', height: '64px', background: '#FFF8F0', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px' }}>🌾</div>
+                                        <div style={{ display: 'flex', gap: '16px' }}>
+                                            <div style={{ width: '72px', height: '72px', background: '#FFF8F0', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '36px' }}>🌾</div>
                                             <div style={{ flex: 1 }}>
-                                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                                    <h4 style={{ color: '#5D4037', fontSize: '14px', fontWeight: '600', margin: 0 }}>{item.name}</h4>
-                                                    <button onClick={() => setCart(cart.filter((_, i) => i !== index))} style={{ background: 'none', border: 'none', cursor: 'pointer' }}><Icon name="x" size={18} color="#A0937D" /></button>
-                                                </div>
-                                                <p style={{ color: '#A0937D', fontSize: '12px', margin: '4px 0' }}>{item.customization?.grindType} grind • {item.customization?.packaging}</p>
-                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '8px' }}>
+                                                <h4 style={{ color: '#5D4037', fontSize: '15px', fontWeight: '600', margin: '0 0 4px' }}>{item.name}</h4>
+                                                <p style={{ color: '#A0937D', fontSize: '12px', margin: '0 0 8px' }}>Medium Grind • 5kg</p>
+                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                                     <span style={{ color: '#8B4513', fontSize: '16px', fontWeight: '700' }}>₹{item.price * (item.quantity || 1)}</span>
-                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                                        <button style={{ width: '28px', height: '28px', borderRadius: '50%', border: '1px solid #E8E0D5', background: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon name="minus" size={14} /></button>
-                                                        <span style={{ fontWeight: '600', color: '#5D4037' }}>{item.quantity || 1}</span>
-                                                        <button style={{ width: '28px', height: '28px', borderRadius: '50%', border: 'none', background: '#8B4513', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon name="plus" size={14} color="white" /></button>
+                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                        <button style={{ width: '28px', height: '28px', border: '1px solid #E8E0D5', borderRadius: '6px', background: 'white', cursor: 'pointer' }}><Icon name="minus" size={14} color="#5D4037" /></button>
+                                                        <span style={{ fontSize: '14px', fontWeight: '600', color: '#5D4037' }}>{item.quantity || 1}</span>
+                                                        <button style={{ width: '28px', height: '28px', border: '1px solid #E8E0D5', borderRadius: '6px', background: 'white', cursor: 'pointer' }}><Icon name="plus" size={14} color="#5D4037" /></button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 ))}
-                                <div style={{ background: 'white', borderRadius: '16px', padding: '16px', marginTop: '24px', border: '1px solid #E8E0D5' }}>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                            <div style={{ width: '40px', height: '40px', background: '#E8F5E9', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon name="map-pin" size={20} color="#4CAF50" /></div>
-                                            <div><p style={{ color: '#5D4037', fontSize: '13px', fontWeight: '600', margin: 0 }}>Deliver to</p><p style={{ color: '#A0937D', fontSize: '12px', margin: '2px 0 0' }}>Madhapur, Hyderabad</p></div>
-                                        </div>
-                                        <button style={{ background: 'none', border: 'none', color: '#8B4513', fontWeight: '600', fontSize: '13px', cursor: 'pointer' }}>Change</button>
+                                <div style={{ background: '#FFF8F0', borderRadius: '12px', padding: '16px', marginTop: '16px' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                        <span style={{ fontSize: '20px' }}>🎁</span>
+                                        <input placeholder="Enter promo code" style={{ flex: 1, border: 'none', background: 'transparent', fontSize: '14px', outline: 'none', color: '#5D4037' }} />
+                                        <button style={{ background: '#8B4513', color: 'white', border: 'none', borderRadius: '8px', padding: '8px 16px', fontSize: '13px', fontWeight: '600', cursor: 'pointer' }}>Apply</button>
                                     </div>
-                                </div>
-                                <div style={{ background: 'white', borderRadius: '16px', padding: '16px', marginTop: '12px', border: '1px solid #E8E0D5' }}>
-                                    <h4 style={{ color: '#5D4037', fontSize: '14px', fontWeight: '600', margin: '0 0 12px' }}>Bill Details</h4>
-                                    {[{ label: 'Item Total', value: `₹${cart.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0)}` }, { label: 'Delivery Fee', value: '₹40' }, { label: 'Discount', value: '-₹20', color: '#4CAF50' }].map((row, i) => (
-                                        <div key={i} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}><span style={{ color: '#A0937D', fontSize: '13px' }}>{row.label}</span><span style={{ color: row.color || '#5D4037', fontSize: '13px', fontWeight: '500' }}>{row.value}</span></div>
-                                    ))}
-                                    <div style={{ borderTop: '1px dashed #E8E0D5', paddingTop: '12px', marginTop: '12px', display: 'flex', justifyContent: 'space-between' }}><span style={{ color: '#5D4037', fontSize: '15px', fontWeight: '700' }}>To Pay</span><span style={{ color: '#8B4513', fontSize: '18px', fontWeight: '700' }}>₹{cart.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0) + 20}</span></div>
                                 </div>
                             </>
                         )}
                     </div>
                     {cart.length > 0 && (
-                        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'white', padding: '16px 24px 32px', borderTop: '1px solid #E8E0D5' }}>
-                            <button onClick={() => setCurrentScreen('payment')} style={primaryButton}>Proceed to Checkout • ₹{cart.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0) + 20}</button>
+                        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'white', padding: '20px 24px 32px', borderTop: '1px solid #E8E0D5' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}><span style={{ color: '#A0937D', fontSize: '14px' }}>Subtotal</span><span style={{ color: '#5D4037', fontSize: '14px' }}>₹{cart.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0)}</span></div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}><span style={{ color: '#A0937D', fontSize: '14px' }}>Delivery</span><span style={{ color: '#4CAF50', fontSize: '14px', fontWeight: '600' }}>FREE</span></div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px', paddingTop: '8px', borderTop: '1px dashed #E8E0D5' }}><span style={{ color: '#5D4037', fontSize: '16px', fontWeight: '600' }}>Total</span><span style={{ color: '#8B4513', fontSize: '18px', fontWeight: '700' }}>₹{cart.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0)}</span></div>
+                            <button onClick={() => setCurrentScreen('payment')} style={primaryButton}>Proceed to Checkout</button>
                         </div>
                     )}
                 </div>
@@ -692,43 +1128,55 @@
                             <h2 style={{ fontSize: '20px', fontWeight: '600', margin: 0 }}>Payment</h2>
                         </div>
                     </div>
-                    <div style={{ flex: 1, overflow: 'auto', padding: '24px' }}>
-                        <h3 style={{ color: '#5D4037', fontSize: '16px', fontWeight: '600', margin: '0 0 16px' }}>Select Payment Method</h3>
-                        {[{ id: 'upi', icon: 'smartphone', title: 'UPI', subtitle: 'Pay using UPI apps' }, { id: 'card', icon: 'credit-card', title: 'Credit / Debit Card', subtitle: 'All cards accepted' }, { id: 'wallet', icon: 'wallet', title: 'Wallets', subtitle: 'Paytm, PhonePe, etc.' }, { id: 'cod', icon: 'package', title: 'Cash on Delivery', subtitle: 'Pay when delivered' }].map(method => (
-                            <button key={method.id} onClick={() => setPaymentMethod(method.id)}
-                                style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '16px', padding: '16px', marginBottom: '12px', border: paymentMethod === method.id ? '2px solid #8B4513' : '2px solid #E8E0D5', borderRadius: '12px', background: paymentMethod === method.id ? '#FFF8F0' : 'white', cursor: 'pointer', textAlign: 'left' }}>
-                                <div style={{ width: '48px', height: '48px', background: '#F5F0EB', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon name={method.icon} size={24} color="#5D4037" /></div>
-                                <div style={{ flex: 1 }}><h4 style={{ color: '#5D4037', fontSize: '15px', fontWeight: '600', margin: 0 }}>{method.title}</h4><p style={{ color: '#A0937D', fontSize: '12px', margin: '2px 0 0' }}>{method.subtitle}</p></div>
-                                <div style={{ width: '20px', height: '20px', borderRadius: '50%', border: paymentMethod === method.id ? 'none' : '2px solid #E8E0D5', background: paymentMethod === method.id ? '#8B4513' : 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{paymentMethod === method.id && <Icon name="check" size={12} color="white" />}</div>
-                            </button>
-                        ))}
-                        <div style={{ background: '#F5F0EB', borderRadius: '16px', padding: '16px', marginTop: '24px' }}>
-                            <h4 style={{ color: '#5D4037', fontSize: '14px', fontWeight: '600', margin: '0 0 12px' }}>Order Summary</h4>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}><span style={{ color: '#A0937D', fontSize: '13px' }}>Items ({cart.length})</span><span style={{ color: '#5D4037', fontSize: '13px' }}>₹{cart.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0)}</span></div>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}><span style={{ color: '#A0937D', fontSize: '13px' }}>Delivery</span><span style={{ color: '#5D4037', fontSize: '13px' }}>₹40</span></div>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}><span style={{ color: '#4CAF50', fontSize: '13px' }}>Discount</span><span style={{ color: '#4CAF50', fontSize: '13px' }}>-₹20</span></div>
-                            <div style={{ borderTop: '1px dashed #D4C4B0', paddingTop: '12px', marginTop: '8px', display: 'flex', justifyContent: 'space-between' }}><span style={{ color: '#5D4037', fontSize: '16px', fontWeight: '700' }}>Total</span><span style={{ color: '#8B4513', fontSize: '18px', fontWeight: '700' }}>₹{cart.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0) + 20}</span></div>
+                    <div style={{ flex: 1, overflow: 'auto', padding: '24px', paddingBottom: '140px' }}>
+                        <div style={{ background: 'white', borderRadius: '16px', padding: '20px', marginBottom: '24px', border: '1px solid #E8E0D5' }}>
+                            <h3 style={{ color: '#5D4037', fontSize: '16px', fontWeight: '600', margin: '0 0 16px' }}>Delivery Address</h3>
+                            <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                                <div style={{ width: '44px', height: '44px', background: '#E8F5E9', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon name="map-pin" size={20} color="#4CAF50" /></div>
+                                <div style={{ flex: 1 }}>
+                                    <h4 style={{ color: '#5D4037', fontSize: '14px', fontWeight: '600', margin: '0 0 4px' }}>Home</h4>
+                                    <p style={{ color: '#A0937D', fontSize: '13px', margin: 0 }}>123, Green Valley Apartments, Madhapur, Hyderabad - 500081</p>
+                                </div>
+                                <button style={{ color: '#8B4513', fontWeight: '600', fontSize: '13px', background: 'none', border: 'none', cursor: 'pointer' }}>Change</button>
+                            </div>
+                        </div>
+                        <div style={{ background: 'white', borderRadius: '16px', padding: '20px', border: '1px solid #E8E0D5' }}>
+                            <h3 style={{ color: '#5D4037', fontSize: '16px', fontWeight: '600', margin: '0 0 16px' }}>Payment Method</h3>
+                            {[{ id: 'upi', icon: 'smartphone', label: 'UPI', sub: 'GPay, PhonePe, Paytm' }, { id: 'card', icon: 'credit-card', label: 'Card', sub: 'Credit/Debit Card' }, { id: 'cod', icon: 'wallet', label: 'Cash on Delivery', sub: 'Pay when delivered' }].map(method => (
+                                <button key={method.id} onClick={() => setPaymentMethod(method.id)}
+                                    style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '16px', padding: '16px', marginBottom: '8px', border: paymentMethod === method.id ? '2px solid #8B4513' : '2px solid #E8E0D5', borderRadius: '12px', background: paymentMethod === method.id ? '#FFF8F0' : 'white', cursor: 'pointer', textAlign: 'left' }}>
+                                    <div style={{ width: '44px', height: '44px', background: '#F5F0EB', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon name={method.icon} size={20} color="#5D4037" /></div>
+                                    <div style={{ flex: 1 }}><h4 style={{ color: '#5D4037', fontSize: '14px', fontWeight: '600', margin: '0 0 2px' }}>{method.label}</h4><p style={{ color: '#A0937D', fontSize: '12px', margin: 0 }}>{method.sub}</p></div>
+                                    <div style={{ width: '20px', height: '20px', border: `2px solid ${paymentMethod === method.id ? '#8B4513' : '#E8E0D5'}`, borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                        {paymentMethod === method.id && <div style={{ width: '10px', height: '10px', background: '#8B4513', borderRadius: '5px' }} />}
+                                    </div>
+                                </button>
+                            ))}
                         </div>
                     </div>
-                    <div style={{ padding: '16px 24px 32px', borderTop: '1px solid #E8E0D5', background: 'white' }}>
-                        <button onClick={() => setCurrentScreen('orderSuccess')} style={{ ...primaryButton, opacity: paymentMethod ? 1 : 0.5, cursor: paymentMethod ? 'pointer' : 'not-allowed' }} disabled={!paymentMethod}>Pay ₹{cart.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0) + 20}</button>
+                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'white', padding: '20px 24px 32px', borderTop: '1px solid #E8E0D5' }}>
+                        <button onClick={() => setCurrentScreen('orderSuccess')} style={primaryButton} disabled={!paymentMethod}>
+                            Pay ₹{cart.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0)}
+                        </button>
                     </div>
                 </div>
             );
 
             // ORDER SUCCESS SCREEN
             const OrderSuccessScreen = () => (
-                <div style={{ ...phoneFrame, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '32px', textAlign: 'center' }} className="fade-in">
-                    <div style={{ width: '120px', height: '120px', background: '#E8F5E9', borderRadius: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '32px' }}><Icon name="check" size={60} color="#4CAF50" /></div>
-                    <h1 style={{ color: '#5D4037', fontSize: '28px', fontWeight: '700', margin: '0 0 12px' }}>Order Placed!</h1>
-                    <p style={{ color: '#A0937D', fontSize: '15px', lineHeight: '1.6', marginBottom: '24px' }}>Your fresh chakki atta is being prepared and will be delivered soon</p>
-                    <div style={{ background: '#FFF8F0', borderRadius: '16px', padding: '20px', width: '100%', marginBottom: '32px' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}><span style={{ color: '#A0937D', fontSize: '13px' }}>Order ID</span><span style={{ color: '#5D4037', fontSize: '13px', fontWeight: '600' }}>#RTX{Math.floor(Math.random() * 10000)}</span></div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}><span style={{ color: '#A0937D', fontSize: '13px' }}>Estimated Delivery</span><span style={{ color: '#5D4037', fontSize: '13px', fontWeight: '600' }}>Tomorrow, 10 AM - 12 PM</span></div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ color: '#A0937D', fontSize: '13px' }}>Payment</span><span style={{ color: '#4CAF50', fontSize: '13px', fontWeight: '600' }}>✓ Successful</span></div>
+                <div style={{ ...phoneFrame, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px' }} className="fade-in">
+                    <div style={{ width: '120px', height: '120px', background: 'linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%)', borderRadius: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '32px' }}>
+                        <Icon name="check" size={56} color="#4CAF50" />
                     </div>
-                    <button onClick={() => setCurrentScreen('orders')} style={primaryButton}>Track Order</button>
-                    <button onClick={() => { setCart([]); setCurrentScreen('dashboard'); }} style={{ ...secondaryButton, marginTop: '12px' }}>Continue Shopping</button>
+                    <h2 style={{ color: '#5D4037', fontSize: '24px', fontWeight: '700', marginBottom: '12px' }}>Order Placed!</h2>
+                    <p style={{ color: '#A0937D', fontSize: '14px', textAlign: 'center', lineHeight: '1.6', marginBottom: '8px' }}>Your fresh atta is being ground just for you</p>
+                    <p style={{ color: '#4CAF50', fontSize: '16px', fontWeight: '600', marginBottom: '32px' }}>Expected delivery: 2-4 hours</p>
+                    <div style={{ background: '#F5F0EB', borderRadius: '16px', padding: '20px', width: '100%', marginBottom: '32px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}><span style={{ color: '#A0937D', fontSize: '14px' }}>Order ID</span><span style={{ color: '#5D4037', fontSize: '14px', fontWeight: '600' }}>#RTS12345</span></div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ color: '#A0937D', fontSize: '14px' }}>Amount Paid</span><span style={{ color: '#8B4513', fontSize: '14px', fontWeight: '600' }}>₹{cart.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0)}</span></div>
+                    </div>
+                    <button onClick={() => { setCart([]); setCurrentScreen('orders'); }} style={primaryButton}>Track Order</button>
+                    <button onClick={() => { setCart([]); setCurrentScreen('dashboard'); }} style={{ ...secondaryButton, marginTop: '12px' }}>Back to Home</button>
                 </div>
             );
 
@@ -736,23 +1184,20 @@
             const OrdersScreen = () => (
                 <div style={{ ...phoneFrame, display: 'flex', flexDirection: 'column' }} className="fade-in">
                     <div style={{ background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 100%)', padding: '44px 20px 20px', color: 'white' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                            <button onClick={() => setCurrentScreen('dashboard')} style={{ background: 'none', border: 'none', cursor: 'pointer' }}><Icon name="chevron-left" size={24} color="white" /></button>
-                            <h2 style={{ fontSize: '20px', fontWeight: '600', margin: 0 }}>My Orders</h2>
-                        </div>
+                        <h2 style={{ fontSize: '20px', fontWeight: '600', margin: 0 }}>My Orders</h2>
                     </div>
                     <div style={{ flex: 1, overflow: 'auto', padding: '16px', paddingBottom: '100px' }}>
-                        {[{ id: 'RTX8234', status: 'Delivered', date: 'Nov 25, 2025', items: 'Premium Wheat Atta (5kg)', amount: '₹345' }, { id: 'RTX7891', status: 'In Transit', date: 'Nov 27, 2025', items: '7-Grain Multigrain (5kg)', amount: '₹445' }, { id: 'RTX6543', status: 'Processing', date: 'Nov 28, 2025', items: 'Ragi Millet Flour (2kg)', amount: '₹200' }].map((order, i) => (
-                            <div key={i} style={{ background: 'white', borderRadius: '16px', padding: '16px', marginBottom: '12px', border: '1px solid #E8E0D5' }}>
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
-                                    <div><h4 style={{ color: '#5D4037', fontSize: '14px', fontWeight: '600', margin: 0 }}>Order #{order.id}</h4><p style={{ color: '#A0937D', fontSize: '12px', margin: '4px 0 0' }}>{order.date}</p></div>
-                                    <span style={{ background: order.status === 'Delivered' ? '#E8F5E9' : order.status === 'In Transit' ? '#FFF3E0' : '#E3F2FD', color: order.status === 'Delivered' ? '#4CAF50' : order.status === 'In Transit' ? '#FF9800' : '#2196F3', fontSize: '11px', fontWeight: '600', padding: '4px 10px', borderRadius: '6px' }}>{order.status}</span>
+                        {[{ id: '#RTS12345', status: 'Being Ground', time: 'Est. 2-4 hrs', progress: 40 }, { id: '#RTS12344', status: 'Delivered', time: 'Yesterday', progress: 100 }].map((order, i) => (
+                            <div key={i} style={{ background: 'white', borderRadius: '16px', padding: '20px', marginBottom: '12px', border: '1px solid #E8E0D5' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
+                                    <div><h4 style={{ color: '#5D4037', fontSize: '15px', fontWeight: '600', margin: '0 0 4px' }}>Order {order.id}</h4><p style={{ color: '#A0937D', fontSize: '12px', margin: 0 }}>{order.time}</p></div>
+                                    <span style={{ background: order.progress === 100 ? '#E8F5E9' : '#FFF3E0', color: order.progress === 100 ? '#4CAF50' : '#FF9800', fontSize: '12px', fontWeight: '600', padding: '6px 12px', borderRadius: '8px', height: 'fit-content' }}>{order.status}</span>
                                 </div>
-                                <p style={{ color: '#5D4037', fontSize: '13px', margin: '0 0 12px' }}>{order.items}</p>
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid #F5F0EB', paddingTop: '12px' }}>
-                                    <span style={{ color: '#8B4513', fontSize: '16px', fontWeight: '700' }}>{order.amount}</span>
-                                    <button style={{ background: 'none', border: '1px solid #8B4513', color: '#8B4513', borderRadius: '8px', padding: '8px 16px', fontSize: '12px', fontWeight: '600', cursor: 'pointer' }}>{order.status === 'Delivered' ? 'Reorder' : 'Track'}</button>
-                                </div>
+                                {order.progress < 100 && (
+                                    <div style={{ background: '#F5F0EB', borderRadius: '4px', height: '8px', overflow: 'hidden' }}>
+                                        <div style={{ width: `${order.progress}%`, height: '100%', background: 'linear-gradient(90deg, #8B4513, #A0522D)', borderRadius: '4px' }} />
+                                    </div>
+                                )}
                             </div>
                         ))}
                     </div>
@@ -760,7 +1205,7 @@
                         {navItem('home', 'Home', 'dashboard', false)}
                         {navItem('search', 'Explore', 'producers', false)}
                         {navItem('shopping-cart', 'Cart', 'cart', false)}
-                        {navItem('clock', 'Orders', 'orders', true)}
+                        {navItem('clock', 'Orders', 'orders', currentScreen === 'orders')}
                         {navItem('user', 'Profile', 'profile', false)}
                     </div>
                 </div>
@@ -806,6 +1251,10 @@
                     case 'login': return <LoginScreen />;
                     case 'location': return <LocationScreen />;
                     case 'dashboard': return <DashboardScreen />;
+                    case 'journeyIntro': return <JourneyIntroScreen />;
+                    case 'productJourney': return <ProductJourneyScreen />;
+                    case 'purityProof': return <PurityProofScreen />;
+                    case 'qrScanner': return <QRScannerScreen />;
                     case 'producers': return <ProducersScreen />;
                     case 'productList': return <ProductListScreen />;
                     case 'productDetail': return <ProductDetailScreen />;
@@ -822,20 +1271,62 @@
                 <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #2C1810 0%, #3D2317 50%, #1A0F0A 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px 20px' }}>
                     <div style={{ display: 'flex', gap: '60px', alignItems: 'flex-start', flexWrap: 'wrap', justifyContent: 'center' }}>
                         {renderScreen()}
-                        <div style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '20px', padding: '24px', minWidth: '200px' }}>
+                        <div style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '20px', padding: '24px', minWidth: '220px' }}>
                             <div style={{ textAlign: 'center', marginBottom: '20px' }}>
                                 <span style={{ fontSize: '32px' }}>🌾</span>
                                 <h2 style={{ color: 'white', fontSize: '18px', fontWeight: '700', margin: '8px 0 4px' }}>ROOTS</h2>
-                                <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '11px' }}>UI/UX Wireframe Prototype</p>
+                                <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '11px' }}>Enhanced Wireframe with Journey</p>
                             </div>
                             <h3 style={{ color: 'white', fontSize: '12px', fontWeight: '600', marginBottom: '16px', opacity: 0.7, textTransform: 'uppercase', letterSpacing: '1px' }}>Screen Navigation</h3>
-                            {[{ screen: 'splash', label: '1. Splash' }, { screen: 'onboarding1', label: '2. Onboarding' }, { screen: 'login', label: '3. Login' }, { screen: 'location', label: '4. Location' }, { screen: 'dashboard', label: '5. Dashboard' }, { screen: 'producers', label: '6. Producers' }, { screen: 'productList', label: '7. Products' }, { screen: 'productDetail', label: '8. Details' }, { screen: 'cart', label: '9. Cart' }, { screen: 'payment', label: '10. Payment' }, { screen: 'orderSuccess', label: '11. Success' }, { screen: 'orders', label: '12. Orders' }, { screen: 'profile', label: '13. Profile' }].map(item => (
+                            {[
+                                { screen: 'splash', label: '1. Splash' },
+                                { screen: 'onboarding1', label: '2. Onboarding' },
+                                { screen: 'login', label: '3. Login' },
+                                { screen: 'location', label: '4. Location' },
+                                { screen: 'dashboard', label: '5. Dashboard' },
+                                { screen: 'journeyIntro', label: '★ Journey Intro', isNew: true },
+                                { screen: 'productJourney', label: '★ Product Journey', isNew: true },
+                                { screen: 'purityProof', label: '★ Purity Proof', isNew: true },
+                                { screen: 'qrScanner', label: '★ QR Scanner', isNew: true },
+                                { screen: 'producers', label: '6. Producers' },
+                                { screen: 'productList', label: '7. Products' },
+                                { screen: 'productDetail', label: '8. Details' },
+                                { screen: 'cart', label: '9. Cart' },
+                                { screen: 'payment', label: '10. Payment' },
+                                { screen: 'orderSuccess', label: '11. Success' },
+                                { screen: 'orders', label: '12. Orders' },
+                                { screen: 'profile', label: '13. Profile' }
+                            ].map(item => (
                                 <button key={item.screen} onClick={() => setCurrentScreen(item.screen)}
-                                    style={{ display: 'block', width: '100%', padding: '10px 14px', marginBottom: '6px', border: 'none', borderRadius: '8px', background: currentScreen === item.screen || (item.screen === 'onboarding1' && currentScreen.includes('onboarding')) ? 'rgba(255,255,255,0.15)' : 'transparent', color: 'white', fontSize: '13px', cursor: 'pointer', textAlign: 'left', opacity: currentScreen === item.screen || (item.screen === 'onboarding1' && currentScreen.includes('onboarding')) ? 1 : 0.6, transition: 'all 0.2s' }}>
+                                    style={{
+                                        display: 'block',
+                                        width: '100%',
+                                        padding: '10px 14px',
+                                        marginBottom: '6px',
+                                        border: 'none',
+                                        borderRadius: '8px',
+                                        background: currentScreen === item.screen || (item.screen === 'onboarding1' && currentScreen.includes('onboarding'))
+                                            ? item.isNew ? 'rgba(76, 175, 80, 0.3)' : 'rgba(255,255,255,0.15)'
+                                            : item.isNew ? 'rgba(76, 175, 80, 0.1)' : 'transparent',
+                                        color: item.isNew ? '#81C784' : 'white',
+                                        fontSize: '13px',
+                                        cursor: 'pointer',
+                                        textAlign: 'left',
+                                        opacity: currentScreen === item.screen || (item.screen === 'onboarding1' && currentScreen.includes('onboarding')) ? 1 : 0.7,
+                                        transition: 'all 0.2s',
+                                        fontWeight: item.isNew ? '600' : '400'
+                                    }}>
                                     {item.label}
                                 </button>
                             ))}
-                            <div style={{ marginTop: '24px', padding: '16px', background: 'rgba(255,255,255,0.05)', borderRadius: '12px' }}>
+                            <div style={{ marginTop: '24px', padding: '16px', background: 'rgba(76, 175, 80, 0.1)', borderRadius: '12px', border: '1px solid rgba(76, 175, 80, 0.3)' }}>
+                                <p style={{ color: '#81C784', fontSize: '11px', margin: 0, lineHeight: '1.5' }}>
+                                    <strong style={{ color: '#A5D6A7' }}>★ New Screens</strong><br/>
+                                    Journey & Transparency Hook<br/>
+                                    Addressing Sourcing, Purity & Freshness
+                                </p>
+                            </div>
+                            <div style={{ marginTop: '16px', padding: '16px', background: 'rgba(255,255,255,0.05)', borderRadius: '12px' }}>
                                 <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '11px', margin: 0, lineHeight: '1.5' }}>
                                     <strong style={{ color: 'white' }}>Capstone Project</strong><br/>
                                     Presented by Mauhhik, Nisar & Deepshikha<br/>
